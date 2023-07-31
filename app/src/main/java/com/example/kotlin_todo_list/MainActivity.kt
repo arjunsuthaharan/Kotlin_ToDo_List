@@ -37,7 +37,6 @@ class MainActivity : ComponentActivity() {
                 binding.etTodoTitle.text.clear()
             }
         }
-
         binding.btnDeleteEntry.setOnClickListener{
             todoEntityAdapter.deleteDoneTodos()
         }

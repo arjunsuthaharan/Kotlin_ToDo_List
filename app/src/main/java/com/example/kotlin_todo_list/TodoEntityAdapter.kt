@@ -12,28 +12,17 @@ import com.example.kotlin_todo_list.databinding.EntryTodoBinding
 class TodoEntityAdapter(private val todos: MutableList<TodoEntity>) : RecyclerView.Adapter<TodoEntityAdapter.TodoEntityViewHolder>() {
 
     private lateinit var binding: EntryTodoBinding
+
+    class TodoEntityViewHolder(private val binding: EntryTodoBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoEntityViewHolder {
-        /*
-        return TodoEntityViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.entry_todo,
-                parent,
-                false
-            )
-        )
-         */
-
-
         binding = EntryTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TodoEntityViewHolder(binding)
     }
-
     fun addTodo(todoEntity: TodoEntity){
         todos.add(todoEntity)
         notifyItemInserted(todos.size -1)
 
     }
-
     fun deleteDoneTodos(){
         todos.removeAll{ todo ->
             todo.isChecked
@@ -60,11 +49,8 @@ class TodoEntityAdapter(private val todos: MutableList<TodoEntity>) : RecyclerVi
             tvTodoEntryTitle.paintFlags = tvTodoEntryTitle.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
         }
     }
-
     override fun getItemCount(): Int {
         return todos.size
-
     }
 
-    class TodoEntityViewHolder(private val binding: EntryTodoBinding) : RecyclerView.ViewHolder(binding.root)
 }
